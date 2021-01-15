@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+
+import React from 'react'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+
+import Navbar from './components/Navbar'
+import Login from './components/Login'
+import Admin from './components/Admin'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  const [user, setUser] = React.useState(false)
+
+  React.useEffect(() => {
+    const userLocal = JSON.parse(localStorage.getItem('user'));
+    console.log('init', userLocal);
+    setUser(userLocal)
+  }, [])
+
+  return user !== false ? (
+    <Router>
+            <div className="container">
+                <Navbar user={user}/>
+                <Switch>
+                    <Route path="/login">
+                        <Login />
+                    </Route>
+                    
+                    <Route path="/" exact>
+                        <Admin />
+                    </Route>
+                </Switch>
+            </div>
+        </Router>
+  ) : (
+    <div>Cargando...</div>
+)
 }
 
 export default App;
