@@ -18,3 +18,9 @@
 [url localhost](http://localhost:3000/)
 
 5._Ingrese usuario y contraseña proporcionados en la hoja de preguntas por seguridad no puedo publicarlo aqui
+
+
+versiones de herramientas
+
+nodejs 10.14.1
+npm 6.4.1
